@@ -1,40 +1,47 @@
 # README
-<!-- <userテーブル> -->
-| Column   |Type|Options|
-|----------|--------|-------------|
-| kanji    | string | null: false |
-| hurigana | string | null: false |
-| email    | string | null: false |
-| pass     | string | null: false |
-| nickname | string | null: false |
-| birth    | string | null: false |
+## usersテーブル
+| Column             |Type    |Options                   |
+|--------------------|--------|--------------------------|
+| last-name          | string | null: false              |
+| first-name         | string | null: false              |
+| lsat-kana          | string | null: false              |
+| first-kana         | string | null: false              |
+| encrypted_password | string | null: false              |
+| email              | string | null: false,unique: true |
+| nickname           | string | null: false              |
+| birth              | date   | null: false              |
 
 has_many :items
 
 
-<!-- <items> -->
-| Column    | Type -----| Options           |
-|-----------|-----------|-------------------|
-| item-name | string    | null: false       |
-| price     | string    | null: false       |
-| detail    | text      | null: false       |
-| user      | reference | foreign_key: true |
-| ship-way  | text      | null: false      |
+## itemsテーブル
+| Column    | Type       | Options                       |
+|-----------|------------|-------------------------------|
+| item-name | string     | null: false                   |
+| price     | string     | null: false                   |
+| detail    | text       | null: false                   |
+| user      | references | null: false,foreign_key: true |
+| ship-way  | text       | null: false                   |
 
 has_one :purchase
+belongs_to :user
 
-<!-- <purchase> -->
-| Column  | Type      | Options           |
-|---------|-----------|-------------------|
-| item-id | reference | foreign_key: true |
-| date    | text      | null: false       |
+## purchasesテーブル
+| Column  | Type       | Options                       |
+|---------|------------|-------------------------------|
+| item    | references | null: false,foreign_key: true |
+| user    | references | null: false,foreign_key: true |
 
-belongs_to :items
+belongs_to :item
 has_one :shipping
 
-<!-- <shipping> -->
-| Column   | Type      |Options            |
-|----------|-----------|-------------------|
-| address  | reference | foreign_key: true |
-
+## shippingsテーブル
+| Column     | Type       |Options            |
+|------------|------------|-------------------|
+| post       | text       | null: false       |
+| prefecture | text       | null: false       |
+| city       | text       | null: false       |
+| address    | text       | null: false       |
+| building   | text       | null: false       |
+| phone      | text       | null: false       |
 belongs_to :purchase
