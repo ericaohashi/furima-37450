@@ -4,7 +4,7 @@
 |--------------------|--------|--------------------------|
 | last_name          | string | null: false              |
 | first_name         | string | null: false              |
-| lsat_kana          | string | null: false              |
+| last_kana          | string | null: false              |
 | first_kana         | string | null: false              |
 | encrypted_password | string | null: false              |
 | email              | string | null: false,unique: true |
@@ -12,7 +12,7 @@
 | birth              | date   | null: false              |
 ### Association
 has_many :items
-has_many :purchase
+has_many :purchases
 
 
 ## itemsテーブル
@@ -26,7 +26,7 @@ has_many :purchase
 | ship_fee_id    | integer    | null: false                   |
 | category_id    | integer    | null: false                   |
 | item_status_id | integer    | null: false                   |
-| prefecture_id      | integer    | null: false                   |
+| prefecture_id  | integer    | null: false                   |
 ### Association
 has_one :purchase
 belongs_to :user
@@ -42,13 +42,14 @@ has_one :shipping
 belongs_to :user
 
 ## shippingsテーブル
-| Column        | Type         |Options            |
-|---------------|--------------|-------------------|
-| post          | string       | null: false       |
-| prefecture_id | integer      | null: false       |
-| city          | string       | null: false       |
-| address       | string       | null: false       |
-| building      | string       |                   |
-| phone         | string       | null: false       |
+| Column        | Type         |Options                        |
+|---------------|--------------|-------------------------------|
+| post          | string       | null: false                   |
+| prefecture_id | integer      | null: false                   |
+| city          | string       | null: false                   |
+| address       | string       | null: false                   |
+| building      | string       |                               |
+| phone         | string       | null: false                   |
+| purchases_id  | references   | null: false,foreign_key: true |
 ### Association
 belongs_to :purchase
