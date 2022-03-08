@@ -21,7 +21,7 @@ has_many :purchases
 | item_name      | string     | null: false                   |
 | price          | integer    | null: false                   |
 | content        | text       | null: false                   |
-| schedule_id         | integer    | null: false                   |
+| schedule_id    | integer    | null: false                   |
 | user           | references | null: false,foreign_key: true |
 | ship_fee_id    | integer    | null: false                   |
 | category_id    | integer    | null: false                   |
