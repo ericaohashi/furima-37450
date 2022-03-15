@@ -2,7 +2,8 @@ require 'rails_helper'
 
 RSpec.describe Item, type: :model do
   before do
-    @item = FactoryBot.build(:item)
+    user = FactoryBot.create(:user)
+    @item = FactoryBot.build(:item,user_id:user.id)
   end
 
   describe '商品出品' do
@@ -80,7 +81,12 @@ RSpec.describe Item, type: :model do
       @item.price = ''
       @item.valid?
       expect(@item.errors.full_messages).to include("Price can't be blank")
-    end
+      end
+      it'商品がユーザーと紐付いていないと出品登録できない'do
+        @item.user = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include("User can't be blank")
+      end
     end
   end
 end
