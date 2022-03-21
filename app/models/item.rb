@@ -8,7 +8,7 @@ class Item < ApplicationRecord
   belongs_to :schedule
   belongs_to :ship_fee
   belongs_to :item_status
-  # has_one :purchase
+  has_one :purchase
   has_one_attached :image
 
   validates :category_id,:prefecture_id,:schedule_id,:ship_fee_id,:item_status_id ,numericality: {presence: true, other_than: 1 ,message: "cant't be blank"}

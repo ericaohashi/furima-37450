@@ -7,11 +7,11 @@ RSpec.describe Item, type: :model do
   end
 
   describe '商品出品' do
-  context '商品登録ができる場合'do
-    it '商品名、商品説明、カテゴリー、商品の状態、配送料、発送元、発送までの日数、販売価格が記入してある'do
-    expect(@item).to be_valid
+    context '商品登録ができる場合'do
+      it '商品名、商品説明、カテゴリー、商品の状態、配送料、発送元、発送までの日数、販売価格が記入してある'do
+      expect(@item).to be_valid
+      end
     end
-  end
 
   context '商品登録ができない場合'do
       it '商品名が空だと登録できない'do
