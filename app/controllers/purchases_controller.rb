@@ -3,7 +3,7 @@ class PurchasesController < ApplicationController
   before_action :item_params, only:[:index,:create]
 
   def index
-    if current_user.id == @item.user_id
+    if current_user.id == @item.user_id || @item.purchase.present?
       redirect_to root_path
      end
     @purchases_shipping = PurchasesShipping.new
@@ -29,7 +29,6 @@ class PurchasesController < ApplicationController
 
   def pay_item
     Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
-    Payjp.api_key = "sk_test_f762a860c9a64a2c267148e7"
       Payjp::Charge.create(
         amount: @item.price,  
         card: purchase_params[:token],    

@@ -26,7 +26,7 @@ class ItemsController < ApplicationController
   end
   
   def edit
-   unless current_user.id == @item.user_id
+   if current_user.id != @item.user_id ||  @item.purchase.present?
     redirect_to action: :index
    end
   end
@@ -36,7 +36,7 @@ class ItemsController < ApplicationController
     if @item.update(item_params)
       redirect_to item_path
     else
-    render :edit
+      render :edit
     end
   end
 
