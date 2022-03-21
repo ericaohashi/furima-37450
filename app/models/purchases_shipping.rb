@@ -1,6 +1,6 @@
 class PurchasesShipping
   include ActiveModel::Model
-  attr_accessor :item_id, :user_id, :post, :prefecture_id, :city, :address, :building, :phone, :purchase, :token
+  attr_accessor :item_id, :user_id, :post, :prefecture_id, :city, :address, :building, :phone, :token
 
   with_options presence: true do
     validates :post, format: { with: /\A\d{3}-\d{4}\z/ }

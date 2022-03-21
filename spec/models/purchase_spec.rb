@@ -85,7 +85,7 @@ RSpec.describe Purchase, type: :model do
       end
 
       it '電話番号にハイフンを含むと登録できない' do
-        @purchases_shipping.phone = '123-4567-1234'
+        @purchases_shipping.phone = '123-4567-12'
         @purchases_shipping.valid?
         expect(@purchases_shipping.errors.full_messages).to include('Phone is invalid')
       end
@@ -94,6 +94,18 @@ RSpec.describe Purchase, type: :model do
         @purchases_shipping.token = nil
         @purchases_shipping.valid?
         expect(@purchases_shipping.errors.full_messages).to include("Token can't be blank")
+      end
+
+      it 'userが紐付いていなければ購入できない' do
+        @purchases_shipping.user_id = ''
+        @purchases_shipping.valid?
+        expect(@purchases_shipping.errors.full_messages).to include("User can't be blank")
+      end
+
+      it 'itemが紐付いていなければ購入できない' do
+        @purchases_shipping.item_id = ''
+        @purchases_shipping.valid?
+        expect(@purchases_shipping.errors.full_messages).to include("Item can't be blank")
       end
     end
   end
