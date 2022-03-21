@@ -4,15 +4,14 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-         has_many :items
-        #  has_many :purchases
-         
-         validates :nickname,presence:true
-         validates :last_name,format:{with:/\A[ぁ-んァ-ン一-龥]/},presence:true # 全角ひらがな、全角カタカナ、漢字のみ
-         validates :first_name,format:{with:/\A[ぁ-んァ-ン一-龥]/},presence:true # 全角ひらがな、全角カタカナ、漢字のみ
-         validates :last_kana,format:{with:/\A[ァ-ヶー－]+\z/},presence:true # 全角カタカナ
-         validates :first_kana,format:{with:/\A[ァ-ヶー－]+\z/},presence:true # 全角カタカナ
-         validates :password,presence:true,format:{ with:/\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i}
-         validates :birth,presence:true
-         
+  has_many :items
+  has_many :purchases
+
+  validates :nickname, presence: true
+  validates :last_name, format: { with: /\A[ぁ-んァ-ン一-龥]/ }, presence: true # 全角ひらがな、全角カタカナ、漢字のみ
+  validates :first_name, format: { with: /\A[ぁ-んァ-ン一-龥]/ }, presence: true # 全角ひらがな、全角カタカナ、漢字のみ
+  validates :last_kana, format: { with: /\A[ァ-ヶー－]+\z/ }, presence: true # 全角カタカナ
+  validates :first_kana, format: { with: /\A[ァ-ヶー－]+\z/ }, presence: true # 全角カタカナ
+  validates :password, presence: true, format: { with: /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i }
+  validates :birth, presence: true
 end
