@@ -34,7 +34,7 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-<<<<<<< Updated upstream
+
     if current_user.id == @item.user_id
       @item.destroy
       redirect_to root_path
@@ -42,15 +42,8 @@ class ItemsController < ApplicationController
       render :show
     end
   end
-=======
-     if current_user.id == @item.user_id
-        @item.destroy
-        redirect_to root_path
-      else
-        render :show
-      end
-     end
->>>>>>> Stashed changes
+
+  
 
   private
 
